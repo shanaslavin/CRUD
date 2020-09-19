@@ -20,6 +20,9 @@ class PostDetailView(DetailView):
 def postview(request):
   if request.method == 'POST':
     form = PostForm(request.POST)
+  else:
+    form = PostForm()
+    return render(request, 'Twitter/post.html', {'form': form})
   if form.is_valid():
     form.save()
     return redirect('index')
